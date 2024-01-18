@@ -8,9 +8,13 @@ import {
 } from 'react-native'
 import React, { useState } from 'react'
 import { Button, Image, Input } from '@rneui/themed'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { RootStackParamList } from '@/types'
 import { signalLogo } from '@/assets'
 
-const LoginScreen = () => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Login'>
+
+const LoginScreen = ({ navigation }: Props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -26,7 +30,6 @@ const LoginScreen = () => {
         <View style={styles.inputContainer}>
           <Input
             placeholder='Email'
-            // autoFocus
             value={email}
             onChangeText={(text) => setEmail(text)}
           />
@@ -41,6 +44,7 @@ const LoginScreen = () => {
         <Button
           title='Register'
           type='outline'
+          onPress={() => navigation.navigate('Register')}
           containerStyle={styles.button}
         />
         <View style={{ height: 100 }} />

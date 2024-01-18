@@ -2,7 +2,7 @@ import 'react-native-gesture-handler'
 import { StatusBar } from 'expo-status-bar'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { LoginScreen } from '@/screens'
+import { LoginScreen, RegisterScreen } from '@/screens'
 import { RootStackParamList } from '@/types'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -18,6 +18,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={globalScreenOptions}>
         <Stack.Screen name='Login' component={LoginScreen} />
+        <Stack.Screen name='Register' component={RegisterScreen} />
       </Stack.Navigator>
 
       <StatusBar style='light' />

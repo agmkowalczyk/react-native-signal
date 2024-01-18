@@ -2,9 +2,10 @@ import 'react-native-gesture-handler'
 import { StatusBar } from 'expo-status-bar'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import LoginScreen from '@/screens/LoginScreen'
+import { LoginScreen } from '@/screens'
+import { RootStackParamList } from '@/types'
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 const globalScreenOptions = {
   headerStyle: { backgroundColor: '#2c6bed' },

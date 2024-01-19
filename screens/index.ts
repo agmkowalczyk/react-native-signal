@@ -1,7 +1,9 @@
-import LoginScreen from '@/screens/LoginScreen'
-import RegisterScreen from '@/screens/RegisterScreen'
+import LoginScreen from './LoginScreen'
+import RegisterScreen from './RegisterScreen'
+import HomeScreen from './HomeScreen'
 
 export {
   LoginScreen,
-  RegisterScreen
+  RegisterScreen,
+  HomeScreen,
 }

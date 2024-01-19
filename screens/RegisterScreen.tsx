@@ -1,4 +1,5 @@
 import {
+  Alert,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -6,10 +7,12 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native'
-import React, { useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '@/types'
 import { Button, Input, Text } from '@rneui/themed'
+import { auth } from '@/services/firebase'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Register'>
 
@@ -19,8 +22,21 @@ const RegisterScreen = ({ navigation }: Props) => {
   const [password, setPassword] = useState('')
   const [imageUrl, setImageUrl] = useState('')
 
-  const register = () => {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerBackTitle: 'Back to Login',
+    })
+  }, [navigation])
 
+  const register = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((authUser) => {
+        updateProfile(authUser.user, {
+          displayName: name,
+          photoURL: imageUrl || `https://ui-avatars.com/api/?name=${name}`,
+        })
+      })
+      .catch((error) => Alert.alert(error.message))
   }
 
   return (
@@ -41,17 +57,20 @@ const RegisterScreen = ({ navigation }: Props) => {
           />
           <Input
             placeholder='Email'
+            autoCapitalize='none'
             value={email}
             onChangeText={(text) => setEmail(text)}
           />
           <Input
             placeholder='Password'
+            autoCapitalize='none'
             value={password}
             secureTextEntry
             onChangeText={(text) => setPassword(text)}
           />
           <Input
             placeholder='Profile Picture URL (optional)'
+            autoCapitalize='none'
             value={imageUrl}
             onChangeText={(text) => setImageUrl(text)}
             onSubmitEditing={register}

@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { HomeScreen, LoginScreen, RegisterScreen } from './screens'
+import { AddChat, HomeScreen, LoginScreen, RegisterScreen } from './screens'
 import { RootStackParamList } from '@/types'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -22,6 +22,7 @@ export default function App() {
         <Stack.Screen name='Login' component={LoginScreen} />
         <Stack.Screen name='Register' component={RegisterScreen} />
         <Stack.Screen name='Home' component={HomeScreen} />
+        <Stack.Screen name='AddChat' component={AddChat} />
       </Stack.Navigator>
 
       <StatusBar style='light' />

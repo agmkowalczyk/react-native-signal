@@ -12,7 +12,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Home'>
 
 const HomeScreen = ({ navigation }: Props) => {
   const signOutUser = () => {
-    signOut(auth).then(() => navigation.replace('Login'))
+    signOut(auth).then(() => navigation.navigate('Login'))
   }
 
   useLayoutEffect(() => {
@@ -20,7 +20,7 @@ const HomeScreen = ({ navigation }: Props) => {
       title: 'Signal',
       headerStyle: { backgroundColor: '#fff' },
       headerTitleStyle: { color: '#000' },
-      headerTintColor: 'red',
+      headerTintColor: '#000',
       headerTitleAlign: 'center',
       headerLeft: () => (
         <View style={{ marginLeft: 20 }}>

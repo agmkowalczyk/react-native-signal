@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet } from 'react-native'
+import { Pressable, StyleSheet, StyleProp, ViewStyle, GestureResponderEvent } from 'react-native'
 import React from 'react'
 
 const CustomPressable = ({
@@ -6,9 +6,9 @@ const CustomPressable = ({
   children,
   onPress,
 }: {
-  style?: any
-  children: any
-  onPress: () => void
+  style?: StyleProp<ViewStyle>
+  children: React.ReactNode
+  onPress: (event: GestureResponderEvent) => void
 }) => {
   return (
     <Pressable

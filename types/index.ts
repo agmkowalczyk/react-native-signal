@@ -3,4 +3,5 @@ export type RootStackParamList = {
   Login: undefined
   Register: undefined
   AddChat: undefined
+  Chat: { id: string; chatName: string }
 }

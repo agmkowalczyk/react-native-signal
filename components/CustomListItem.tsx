@@ -5,20 +5,22 @@ import { ListItem, Avatar } from '@rneui/themed'
 type Props = {
   id: string
   chatName: string
-  enterChat: string
+  enterChat: (id: string, chatName: string) => void
 }
 
 const CustomListItem = ({ id, chatName, enterChat }: Props) => {
-  const name = 'test all'
+  const name = 'John Doew'
 
   return (
-    <ListItem>
+    <ListItem bottomDivider onPress={() => enterChat(id, chatName)}>
       <Avatar
         rounded
         source={{ uri: `https://ui-avatars.com/api/?name=${name}` }}
       />
       <ListItem.Content>
-        <ListItem.Title style={{ fontWeight: '800' }}>Chat</ListItem.Title>
+        <ListItem.Title style={{ fontWeight: '800' }}>
+          {chatName}
+        </ListItem.Title>
         <ListItem.Subtitle numberOfLines={1} ellipsizeMode='tail'>
           subtitle
         </ListItem.Subtitle>

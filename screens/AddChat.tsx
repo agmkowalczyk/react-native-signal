@@ -36,7 +36,7 @@ const AddChat = ({ navigation }: Props) => {
         onSubmitEditing={createChat}
         leftIcon={<AntDesign name='wechat' size={28} color='#000' />}
       />
-      <Button onPress={createChat} title='Create new Chat' />
+      <Button onPress={createChat} title='Create new Chat' disabled={!chatName} />
     </View>
   )
 }

@@ -6,18 +6,13 @@ import { CustomListItem, CustomPressable } from '@/components'
 import { Avatar } from '@rneui/themed'
 import { auth, db } from '@/services/firebase'
 import { signOut } from 'firebase/auth'
-import { AntDesign, SimpleLineIcons } from '@expo/vector-icons'
+import { AntDesign } from '@expo/vector-icons'
 import { DocumentData, collection, onSnapshot } from 'firebase/firestore'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>
 
-type ChatProps = {
-  id: string
-  data: { chatName: string }
-}
-
 const HomeScreen = ({ navigation }: Props) => {
-  const [chats, setChats] = useState([] as ChatProps[])
+  const [chats, setChats] = useState([] as DocumentData[])
 
   const signOutUser = () => {
     signOut(auth).then(() => navigation.navigate('Login'))
@@ -26,7 +21,7 @@ const HomeScreen = ({ navigation }: Props) => {
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'chats'), (snapshot) =>
       setChats(
-        snapshot.docs.map((doc: DocumentData) => ({
+        snapshot.docs.map((doc) => ({
           id: doc.id,
           data: doc.data(),
         }))
